@@ -66,7 +66,7 @@ function addUi(data) {
     "px-[20px]"
   );
   data.forEach((element) => {
-    div.innerHTML = ` 
+    div.innerHTML = `
           <strong
             id="list_strong"
             class="font-normal w-[350px] text-[16px] leading-[100%] text-[#9E78CF]"
@@ -78,7 +78,7 @@ function addUi(data) {
             type="text"
           />
           <div
-          
+
             id="list_iconWrapper"
             class="gap-2 flex items-center justify-between"
           >
@@ -105,5 +105,133 @@ lists.addEventListener("click", (e) => {
 //   if (e.target.classList.contains("icon_check")) {
 //     list_strong.classList.add("hidden");
 //     list_input.classList.remove("hidden");
+//   }
+// });
+
+// let form = document.getElementById("form");
+// let lists = document.getElementById("lists");
+// let form_input = document.getElementById("form_input");
+// let none = document.getElementById("none");
+
+// let data = JSON.parse(localStorage.getItem("todos")) || [];
+
+// function addUi() {
+//   lists.innerHTML = "";
+//   data.forEach((element) => {
+//     let div = document.createElement("div");
+
+//     div.classList.add(
+//       "w-[600px]",
+//       "mb-3",
+//       "flex",
+//       "items-center",
+//       "justify-between",
+//       "rounded-[10px]",
+//       "border-[1px]",
+//       "bg-[#0D0714]",
+//       "border-[#3E1671]",
+//       "py-[30px]",
+//       "px-[20px]"
+//     );
+//     div.setAttribute("data-id", element.id);
+
+//     div.innerHTML = `
+//       <strong
+//         class="list_strong font-normal w-[350px] text-[16px] leading-[100%] text-[#9E78CF]"
+//       >${element.form_input}</strong>
+
+//       <input
+//         class="list_input hidden w-[400px] bg-[#0D0714] border-[#3E1671] py-[10px] pl-[15px]
+//         placeholder:font-normal placeholder:text-[16px] placeholder:leading-[100%]
+//         placeholder:text-[#777777] font-bold text-[16px] leading-[100%] text-[#777777] outline-0"
+//         type="text"
+//       />
+
+//       <div class="gap-2 flex items-center justify-between">
+//         <p class="font-normal text-[16px] leading-[100%] text-[#9E78CF]">
+//           <span>Sent => </span><br>${element.createdAt}
+//         </p>
+//         <p class="font-normal text-[16px] leading-[100%] text-[#9E78CF]">
+//           <span>Edit => </span><br>${element.editedAt || ""}
+//         </p>
+//         <i class="icon_pencil text-[#9E78CF] cursor-pointer fa-solid fa-pencil"></i>
+//         <i class="icon_trash text-[#9E78CF] cursor-pointer fa-solid fa-trash"></i>
+//       </div>`;
+//     lists.append(div);
+//   });
+// }
+// addUi();
+
+// // Add
+// form.addEventListener("submit", (e) => {
+//   e.preventDefault();
+//   let valu = form_input.value.trim();
+
+//   if (valu === "") {
+//     none.classList.remove("hidden");
+//   } else {
+//     none.classList.add("hidden");
+
+//     let now = new Date();
+//     let time = `${String(now.getHours()).padStart(2, "0")}:${String(
+//       now.getMinutes()
+//     ).padStart(2, "0")}`;
+
+//     data.push({
+//       id: Date.now(),
+//       form_input: valu,
+//       createdAt: time,
+//       editedAt: "",
+//     });
+
+//     localStorage.setItem("todos", JSON.stringify(data));
+//     form_input.value = "";
+//     addUi();
+//   }
+// });
+
+// // Delete & Edit
+// lists.addEventListener("click", (e) => {
+//   let parent = e.target.closest("div[data-id]");
+//   if (!parent) return;
+//   let id = Number(parent.getAttribute("data-id"));
+
+//   // Delete
+//   if (e.target.classList.contains("icon_trash")) {
+//     data = data.filter((t) => t.id !== id);
+//     localStorage.setItem("todos", JSON.stringify(data));
+//     addUi();
+//   }
+
+//   // Edit
+//   if (e.target.classList.contains("icon_pencil")) {
+//     let strong = parent.querySelector(".list_strong");
+//     let input = parent.querySelector(".list_input");
+
+//     strong.classList.add("hidden");
+//     input.classList.remove("hidden");
+//     input.value = strong.textContent;
+//     input.focus();
+
+//     input.addEventListener(
+//       "blur",
+//       () => {
+//         strong.textContent = input.value;
+//         strong.classList.remove("hidden");
+//         input.classList.add("hidden");
+
+//         let now = new Date();
+//         let time = `${String(now.getHours()).padStart(2, "0")}:${String(
+//           now.getMinutes()
+//         ).padStart(2, "0")}`;
+
+//         data = data.map((t) =>
+//           t.id === id ? { ...t, form_input: input.value, editedAt: time } : t
+//         );
+//         localStorage.setItem("todos", JSON.stringify(data));
+//         addUi();
+//       },
+//       { once: true }
+//     );
 //   }
 // });
